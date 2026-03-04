@@ -12,3 +12,20 @@ Includes a **FastAPI mock server** so the suite can run locally and in CI withou
 - **HTML test reports** generated on every run (CI artifacts)
 
 ## Project structure
+
+config/          # Environment configuration loader
+src/client/      # API client wrapper
+tests/           # Test suites (smoke/regression)
+mock_server.py   # Mock banking API (FastAPI)
+.github/         # CI workflow
+
+## Test coverage
+
+The suite validates key flows for a banking transfer system:
+
+- Health endpoint validation
+- Authentication flow
+- Bank transfer creation
+- Validation rules (negative amount)
+- Business rule validation (insufficient funds)
+- Idempotency behavior
