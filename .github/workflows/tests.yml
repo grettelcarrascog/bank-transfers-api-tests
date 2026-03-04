@@ -27,7 +27,7 @@ jobs:
       - name: Start mock API
         run: |
           uvicorn mock_server:app --host 127.0.0.1 --port 8000 &
-          sleep 2
+          sleep 5
 
       - name: Create reports folder
         run: mkdir -p reports
@@ -49,3 +49,4 @@ jobs:
         with:
           name: pytest-reports
           path: reports/
+
