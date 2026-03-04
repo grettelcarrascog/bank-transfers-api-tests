@@ -29,7 +29,10 @@ jobs:
         run: |
           uvicorn mock_server:app --host 127.0.0.1 --port 8000 &
           sleep 2
-
+          
+      - name: Create reports folder
+        run: mkdir -p reports
+        
       - name: Run smoke tests
         run: |
           export BASE_URL=http://127.0.0.1:8000
@@ -46,3 +49,4 @@ jobs:
           name: pytest-reports
           path: reports/
 EOF
+
