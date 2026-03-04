@@ -13,11 +13,14 @@ Includes a **FastAPI mock server** so the suite can run locally and in CI withou
 
 ## Project structure
 
-config/          # Environment configuration loader
-src/client/      # API client wrapper
-tests/           # Test suites (smoke/regression)
-mock_server.py   # Mock banking API (FastAPI)
-.github/         # CI workflow
+```
+config/            Environment configuration
+src/client/        API client wrapper
+tests/             Automated test suites
+tests/api/         API test cases
+mock_server.py     Mock banking API (FastAPI)
+.github/workflows  CI pipeline configuration
+```
 
 ## Test coverage
 
