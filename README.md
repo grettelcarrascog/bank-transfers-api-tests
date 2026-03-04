@@ -1,60 +1,36 @@
 # Bank Transfers API Tests
 
-API testing project built with Python and pytest to validate core scenarios of a banking transfer service.
+API test automation project in Python (pytest) for a simplified banking transfers domain.
 
-Automation is used here as a complement to QA analysis, helping validate repeatable scenarios and regression flows for financial APIs.
+The suite uses a small FastAPI mock server so tests can run locally and in CI without relying on external environments.
+To run the tests locally, start the mock server and then execute the pytest suites.
 
-## What is tested
+## What’s covered
 
-The test suite validates key behaviors of a bank transfer API:
+- Smoke: health check, login
+- Regression: transfer creation (happy path), negative amount, insufficient funds
+- Idempotency-Key header handling
 
-- Health endpoint availability
-- Authentication flow
-- Successful bank transfer creation
-- Validation of invalid amounts
-- Business rule validation (insufficient funds)
-- Idempotency behavior for transfers
+## How to run locally
 
-## Tech stack
+Start the mock API (Terminal 1):
 
-- Python
-- Pytest
-- Requests
-- FastAPI (mock server)
-- GitHub Actions
-
-## Run locally
-
-Start the mock API server:
-
-```
+```bash
 uvicorn mock_server:app --host 127.0.0.1 --port 8000
 ```
-
-Run tests:
-
+Run tests (Terminal 2):
 ```
-pytest -v
-```
-
-Run smoke tests:
-
-```
+export BASE_URL=http://127.0.0.1:8000
 pytest -m smoke
+pytest -m regression
 ```
-
 ## Project structure
-
 ```
 config/            environment configuration
 src/client/        API client wrapper
-tests/             automated test suites
-tests/api/         API test scenarios
+tests/api/         API test cases
 mock_server.py     mock banking API
-.github/workflows  CI pipeline configuration
+.github/workflows  CI pipeline (GitHub Actions)
 ```
-
 ## Author
-
-Grettel Carrasco  
-QA Analyst
+Grettel Carrasco — QA Analyst
