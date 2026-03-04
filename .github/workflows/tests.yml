@@ -16,8 +16,8 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: pip
 
       - name: Install dependencies
         run: |
@@ -28,18 +28,20 @@ jobs:
         run: |
           uvicorn mock_server:app --host 127.0.0.1 --port 8000 &
           sleep 2
-          
+
       - name: Create reports folder
         run: mkdir -p reports
-        
+
       - name: Run smoke tests
+        env:
+          BASE_URL: http://127.0.0.1:8000
         run: |
-          export BASE_URL=http://127.0.0.1:8000
           pytest -m smoke --html=reports/smoke-report.html --self-contained-html
 
       - name: Run regression tests
+        env:
+          BASE_URL: http://127.0.0.1:8000
         run: |
-          export BASE_URL=http://127.0.0.1:8000
           pytest -m regression --html=reports/regression-report.html --self-contained-html
 
       - name: Upload test reports
@@ -47,6 +49,3 @@ jobs:
         with:
           name: pytest-reports
           path: reports/
-EOF
-
-
