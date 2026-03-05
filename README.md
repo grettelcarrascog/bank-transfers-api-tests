@@ -1,5 +1,7 @@
 # Bank Transfers API Tests
 
+[![API Tests](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
+
 API test automation project in Python (**pytest**) built as a complement
 to manual QA practice, for a simplified banking transfers domain.  
 The suite includes a lightweight **FastAPI mock server** so tests can run
@@ -51,6 +53,8 @@ mock_server.py          mock banking API
 
 - Tests validate status codes, response payloads, and business rules.
 - Designed to be reliable and reproducible: no dependency on shared QA environments.
+- CI runs smoke + regression on push/PR via GitHub Actions.
+- HTML reports are available in GitHub Actions → workflow run → Artifacts → `pytest-reports` (includes `smoke-report.html` and `regression-report.html`).
 
 ## Author
 
